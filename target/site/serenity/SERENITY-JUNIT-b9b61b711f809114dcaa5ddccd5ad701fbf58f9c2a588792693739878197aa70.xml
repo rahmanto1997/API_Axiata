@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="User functionality" skipped="0" tests="4" time="6.89" timestamp="2022-01-13 08:43:09"><testcase name="I want to create user"/><testcase name="I want to get user by ID"/><testcase name="I want to edit user data"/><testcase name="I want to edit dele data"/></testsuite>

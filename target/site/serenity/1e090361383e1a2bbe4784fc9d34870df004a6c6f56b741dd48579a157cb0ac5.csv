@@ -1,0 +1,5 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"User functionality","I want to create user","SUCCESS","2022-01-13T20:43:09.992+07:00[Asia/Bangkok]","0.0","4.31"
+"User functionality","I want to get user by ID","SUCCESS","2022-01-13T20:43:14.309+07:00[Asia/Bangkok]","0.0","0.82"
+"User functionality","I want to edit user data","SUCCESS","2022-01-13T20:43:15.137+07:00[Asia/Bangkok]","0.0","0.89"
+"User functionality","I want to edit dele data","SUCCESS","2022-01-13T20:43:16.035+07:00[Asia/Bangkok]","0.0","0.87"
