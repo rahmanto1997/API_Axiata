@@ -12,59 +12,81 @@ public class goals {
     int id;
 
     //define request params
-    public void setRequestBody(String name, String email, String gender, String status){
+    public void setRequestBody() {
         requestparams = new JSONObject();
-        requestparams.put("name",name);
-        requestparams.put("email",email);
-        requestparams.put("gender",gender);
-        requestparams.put("status",status);
+        requestparams.put("name", "hassimi");
+        requestparams.put("email", "hassimi6@axiata.id");
+        requestparams.put("gender", "male");
+        requestparams.put("status", "inactive");
 
         SerenityRest
                 .given()
-                .header("Content-Type","application/json")
-                .header("Authorization","Bearer d09d63bd86c466feebbd0759ac0c811859f09cbe2aef1592eb2acec303b63fb6")
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer d09d63bd86c466feebbd0759ac0c811859f09cbe2aef1592eb2acec303b63fb6")
                 .body(requestparams.toString());
     }
-    public void hitEndpointSignup(){
+
+    public void hitEndpointSignup() {
         SerenityRest
                 .when()
                 .post(endpoint.User)
                 .then()
                 .statusCode(201);
-    }
-    public void validateEndpoint(int statuscode){
-        SerenityRest
-                .then()
-                .statusCode(statuscode);
-    }
-    public void hitEndpointGetUser(){
-        SerenityRest
-                .given()
-                .header("Authorization","Bearer d09d63bd86c466feebbd0759ac0c811859f09cbe2aef1592eb2acec303b63fb6")
-                .when()
-                .get(endpoint.GetUser)
-                .then()
-                .statusCode(200);
 
         id = SerenityRest
                 .then()
                 .extract()
-                .path("data[0].id");
+                .path("data.id");
     }
-    public void hitEndpointEditUser(){
+
+    public void validateEndpoint(int statuscode) {
         SerenityRest
+                .then()
+                .statusCode(statuscode);
+    }
+
+    public void hitEndpointGetUser() {
+        SerenityRest
+                .given()
+                .header("Authorization", "Bearer d09d63bd86c466feebbd0759ac0c811859f09cbe2aef1592eb2acec303b63fb6")
                 .when()
-                .put(endpoint.User+id)
+                .get(endpoint.User + id)
                 .then()
                 .statusCode(200);
     }
-    public void hitEndpointDeleteUser(){
+
+    public void hitEndpointEditUser() {
+        requestparams = new JSONObject();
+        requestparams.put("name", "hassimi");
+        requestparams.put("email", "hassimi6@axiata.id");
+        requestparams.put("gender", "male");
+        requestparams.put("status", "inactive");
+
         SerenityRest
                 .given()
-                .header("Authorization","Bearer d09d63bd86c466feebbd0759ac0c811859f09cbe2aef1592eb2acec303b63fb6")
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer d09d63bd86c466feebbd0759ac0c811859f09cbe2aef1592eb2acec303b63fb6")
+                .body(requestparams.toString())
                 .when()
-                .delete(endpoint.User+id)
+                .put(endpoint.User + id)
+                .then()
+                .statusCode(200);
+    }
+
+    public void hitEndpointDeleteUser() {
+        SerenityRest
+                .given()
+                .header("Authorization", "Bearer d09d63bd86c466feebbd0759ac0c811859f09cbe2aef1592eb2acec303b63fb6")
+                .when()
+                .delete(endpoint.User + id)
                 .then()
                 .statusCode(204);
+    }
+
+    //valdate JSONSchema Delete User who currently login
+    public void jsonschmeEndpointGoals() {
+        SerenityRest
+                .then()
+                .body(matchesJsonSchemaInClasspath("JSONSchema/goals.json"));
     }
 }

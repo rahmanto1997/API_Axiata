@@ -6,18 +6,18 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import starter.baseTest.baseTest;
 
-public class goalSteps extends baseTest {
+public class goalsSteps extends baseTest {
     @Given("I am create user")
     public void iAmCreateUser() {
     }
 
-    @When("I am set body name {string} email {string} gender {string} status {string}")
-    public void iAmSetBodyNameEmailGenderStatus(String name, String email, String gender, String status) {
-        goals.setRequestBody(name, email, gender, status);
+    @When("I am set body request sign")
+    public void iAmSetBodyRequestSign() {
+        goals.setRequestBody();
     }
 
-    @And("I am hit endpoint")
-    public void iAmHitEndpoint() {
+    @And("I am hit endpoint signup")
+    public void iAmHitEndpointSignup() {
         goals.hitEndpointSignup();
     }
 
@@ -26,23 +26,29 @@ public class goalSteps extends baseTest {
         goals.validateEndpoint(statuscode);
     }
 
-    @Given("I am to see user")
-    public void iAmToSeeUser() {
+    @And("validate success signup")
+    public void validateSuccessSignup() {
+        goals.jsonschmeEndpointGoals();
     }
-    @When("I am hit endpoint get user")
+
+    @And("I am hit endpoint get user")
     public void iAmHitEndpointGetUser() {
         goals.hitEndpointGetUser();
     }
-    @Given("I am to edit user")
-    public void iAmToEditUser() {
+
+    @And("validate success get user")
+    public void validateSuccessGetUser() {
+        goals.jsonschmeEndpointGoals();
     }
+
     @And("I am hit endpoint edit user")
     public void iAmHitEndpointEditUser() {
         goals.hitEndpointEditUser();
     }
 
-    @Given("I am to delete user")
-    public void iAmToDeleteUser() {
+    @And("validate success edit user")
+    public void validateSuccessEditUser() {
+        goals.jsonschmeEndpointGoals();
     }
 
     @And("I am hit endpoint delete user")
